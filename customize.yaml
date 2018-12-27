@@ -1,0 +1,6 @@
+  light.kitchen_main_lights:
+    friendly_name: Kitchen Main Lights
+  light.kitchen_island_pendants:
+    friendly_name: Kitchen Island Pendants
+  light.family_room_main_lights:
+    friendly_name: Family Room Main Lights
