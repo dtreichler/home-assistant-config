@@ -1,27 +1,25 @@
-  - alias: Turn on the receiver when family room speakers are turned on
-    id: "000001"
-    trigger:
-      platform: state
-      entity_id: media_player.family_room_speakers
-      to: 'on'
-    action:
-      service: remote.turn_on
-      entity_id: remote.harmony_hub
-      data:
-        activity: "23544292"
-
-  - alias: 'SMS when garage door is open'
-    id: "000002"
-    trigger:
-      platform: state
-      entity_id: cover.garage_door_opener
-      to: 'open'
-      for:
-        minutes: 15
-    action:
-      - service: notify.twilio
-        data:
-          message: "The garage door is open!"
-          target:
-            - "+13015183303"
-            - "+12404468426"
+- id: '000001'
+  alias: Turn on receiver with family room speakers
+  trigger:
+  - entity_id: media_player.family_room_speakers
+    platform: state
+    to: 'on'
+  action:
+  - data:
+      activity: '23544292'
+    entity_id: remote.harmony_hub
+    service: remote.turn_on
+- id: '000002'
+  alias: SMS when garage door is open
+  trigger:
+  - entity_id: cover.garage_door_opener
+    for: 0:15:00
+    platform: state
+    to: open
+  action:
+  - data:
+      message: The garage door is open!
+      target:
+      - '+13015183303'
+      - '+12404468426'
+    service: notify.twilio
