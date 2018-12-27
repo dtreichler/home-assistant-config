@@ -1,0 +1,13 @@
+# ignore all by default
+*
+
+# Whitelist some files
+!*.md
+!*.yaml
+!.gitignore
+
+._*
+
+# Keep our secrets
+secrets.yaml
+known_devices.yaml

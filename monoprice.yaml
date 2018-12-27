@@ -1,0 +1,16 @@
+  - platform: monoprice
+    port: /dev/ttyUSB0
+    zones:
+      11:
+        name: Kitchen Speakers
+      12:
+        name: Office Speakers
+      13:
+        name: Playroom Speakers
+      14:
+        name: Sunroom Speakers
+      15:
+        name: Family Room Speakers
+    sources:
+      5:
+        name: Chromecast

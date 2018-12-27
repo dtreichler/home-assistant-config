@@ -1,0 +1,117 @@
+homeassistant:
+  # Name of the location where Home Assistant is running
+  name: Home
+  # Location required to calculate the time the sun rises and sets
+  latitude: !secret home_lat
+  longitude: !secret home_lon
+  # Impacts weather/sunrise data (altitude above sea level in meters)
+  elevation: 0
+  # metric for Metric, imperial for Imperial
+  unit_system: imperial
+  # Pick yours from here: http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone: America/New_York
+  # Customization file
+  customize: !include customize.yaml
+
+
+# Enables the frontend
+frontend:
+
+# Enables configuration UI
+config:
+
+# Uncomment this if you are using SSL/TLS, running in Docker container, etc.
+# http:
+#   base_url: example.duckdns.org:8123
+
+# Checks for available updates
+# Note: This component will send some information about your system to
+# the developers to assist with development of Home Assistant.
+# For more information, please see:
+# https://home-assistant.io/blog/2016/10/25/explaining-the-updater/
+updater:
+  # Optional, allows Home Assistant developers to focus on popular components.
+  # include_used_components: true
+
+# Discover some devices automatically
+discovery:
+
+# Allows you to issue voice commands from the frontend in enabled browsers
+conversation:
+
+# Enables support for tracking state changes over time
+history:
+
+# View all events in a logbook
+logbook:
+
+# Enables a map showing the location of tracked devices
+map:
+
+# Track the sun
+sun:
+
+# Text to speech
+tts:
+  - platform: google
+
+# Cloud
+cloud:
+  google_actions:
+    filter:
+      include_entities:
+        - media_player.sunroom_speakers
+        - media_player.playroom_speakers
+        - media_player.office_speakers
+        - media_player.kitchen_speakers
+        - media_player.family_room_speakers
+    entity_config:
+      media_player.sunroom_speakers:
+        name: Sunroom Speakers
+      media_player.playroom_speakers:
+        name: Playroom Speakers
+      media_player.office_speakers:
+        name: Office Speakers
+      media_player.kitchen_speakers:
+        name: Kitchen Speakers
+      media_player.family_room_speakers:
+        name: Family Room Speakers
+
+media_player: !include monoprice.yaml
+
+ecobee:
+  api_key: !secret ecobee_api_key
+
+group: !include groups.yaml
+automation: !include automations.yaml
+script: !include scripts.yaml
+
+panel_iframe:
+  configurator:
+    title: Configurator
+    icon: mdi:wrench
+    url: http://hassio.local:3218
+
+cover:
+  - platform: myq
+    username: !secret myq_username
+    password: !secret myq_password
+    type: liftmaster
+
+twilio:
+  account_sid: !secret twilio_account_sid
+  auth_token: !secret twilio_auth_token
+
+notify:
+  - name: twilio
+    platform: twilio_sms
+    from_number: !secret twilio_from_number
+
+device_tracker:
+  - platform: unifi
+    host: !secret unifi_host
+    verify_ssl: false
+    username: !secret unifi_username
+    password: !secret unifi_password
+    new_device_defaults:
+      track_new_devices: false
