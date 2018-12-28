@@ -116,3 +116,19 @@ lutron_caseta:
     keyfile: caseta/caseta.key
     certfile: caseta/caseta.crt
     ca_certs: caseta/caseta-bridge.crt
+
+input_number:
+  speaker_volume:
+    name: Speaker Volume
+    initial: 0.2
+    min: 0
+    max: 1
+    step: 0.01
+    icon: mdi:volume-high
+
+input_select:
+  speaker_source:
+    name: Speaker Source
+    options: ["Chromecast","TV","Office","Record Player"]
+    initial: "Chromecast"
+    icon: mdi:speaker-wireless

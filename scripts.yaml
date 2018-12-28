@@ -1,0 +1,85 @@
+speaker_volume:
+  alias: 'Set volume for all speakers'
+  sequence:
+    - service: media_player.volume_set
+      data_template:
+        entity_id: media_player.kitchen_speakers
+        volume_level: '{{ states.input_number.speaker_volume.state | float }}'
+    - service: media_player.volume_set
+      data_template:
+        entity_id: media_player.sunroom_speakers
+        volume_level: '{{ states.input_number.speaker_volume.state | float }}'
+    - service: media_player.volume_set
+      data_template:
+        entity_id: media_player.family_room_speakers
+        volume_level: '{{ states.input_number.speaker_volume.state | float }}'
+    - service: media_player.volume_set
+      data_template:
+        entity_id: media_player.playroom_speakers
+        volume_level: '{{ states.input_number.speaker_volume.state | float }}'
+    - service: media_player.volume_set
+      data_template:
+        entity_id: media_player.office_speakers
+        volume_level: '{{ states.input_number.speaker_volume.state | float }}'
+        
+speaker_source:
+  alias: 'Set source for all speakers'
+  sequence:
+    - service: media_player.select_source
+      data_template:
+        entity_id: media_player.kitchen_speakers
+        source: '{{ states.input_select.speaker_source.state }}'
+    - service: media_player.select_source
+      data_template:
+        entity_id: media_player.sunroom_speakers
+        source: '{{ states.input_select.speaker_source.state }}'
+    - service: media_player.select_source
+      data_template:
+        entity_id: media_player.family_room_speakers
+        source: '{{ states.input_select.speaker_source.state }}'
+    - service: media_player.select_source
+      data_template:
+        entity_id: media_player.playroom_speakers
+        source: '{{ states.input_select.speaker_source.state }}'
+    - service: media_player.select_source
+      data_template:
+        entity_id: media_player.office_speakers
+        source: '{{ states.input_select.speaker_source.state }}'
+
+speaker_turn_off:
+  alias: 'Turn off all speakers'
+  sequence:
+    - service: media_player.turn_off
+      data:
+        entity_id: media_player.kitchen_speakers
+    - service: media_player.turn_off
+      data:
+        entity_id: media_player.sunroom_speakers
+    - service: media_player.turn_off
+      data:
+        entity_id: media_player.family_room_speakers
+    - service: media_player.turn_off
+      data:
+        entity_id: media_player.playroom_speakers
+    - service: media_player.turn_off
+      data:
+        entity_id: media_player.office_speakers
+
+speaker_turn_on:
+  alias: 'Turn on all speakers'
+  sequence:
+    - service: media_player.turn_on
+      data:
+        entity_id: media_player.kitchen_speakers
+    - service: media_player.turn_on
+      data:
+        entity_id: media_player.sunroom_speakers
+    - service: media_player.turn_on
+      data:
+        entity_id: media_player.family_room_speakers
+    - service: media_player.turn_on
+      data:
+        entity_id: media_player.playroom_speakers
+    - service: media_player.turn_on
+      data:
+        entity_id: media_player.office_speakers
