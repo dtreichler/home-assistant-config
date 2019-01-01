@@ -55,9 +55,11 @@ cloud:
         - media_player.office_speakers
         - media_player.kitchen_speakers
         - media_player.family_room_speakers
-        - light.kitchen_main_lights
-        - light.kitchen_island_pendants
-        - light.family_room_main_lights
+        - script.all_speakers_volume
+        - script.all_speakers_source
+      include_domains:
+        - light
+        - cover
     entity_config:
       media_player.sunroom_speakers:
         name: Sunroom Speakers

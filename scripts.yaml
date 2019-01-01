@@ -1,4 +1,4 @@
-speaker_volume:
+all_speakers_volume:
   alias: 'Set volume for all speakers'
   sequence:
     - service: media_player.volume_set
@@ -21,8 +21,8 @@ speaker_volume:
       data_template:
         entity_id: media_player.office_speakers
         volume_level: '{{ states.input_number.speaker_volume.state | float }}'
-        
-speaker_source:
+
+all_speakers_source:
   alias: 'Set source for all speakers'
   sequence:
     - service: media_player.select_source
@@ -46,7 +46,7 @@ speaker_source:
         entity_id: media_player.office_speakers
         source: '{{ states.input_select.speaker_source.state }}'
 
-speaker_turn_off:
+all_speakers_turn_off:
   alias: 'Turn off all speakers'
   sequence:
     - service: media_player.turn_off
@@ -65,7 +65,7 @@ speaker_turn_off:
       data:
         entity_id: media_player.office_speakers
 
-speaker_turn_on:
+all_speakers_turn_on:
   alias: 'Turn on all speakers'
   sequence:
     - service: media_player.turn_on
@@ -83,3 +83,20 @@ speaker_turn_on:
     - service: media_player.turn_on
       data:
         entity_id: media_player.office_speakers
+
+set_speaker_source:
+  sequence:
+    - service: media_player.select_source
+      data_template:
+        entity_id: '{{ speaker_zone }}'
+        source: '{{ source }}'
+
+send_text_message:
+  alias: "Send a text message"
+  sequence:
+    - service: notify.twilio
+      data_template:
+        message: '{{ message }}'
+        target:
+        - !secret w_phone
+        - !secret d_phone

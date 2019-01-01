@@ -1,7 +1,6 @@
   all_speakers:
     name: Speakers
     view: true
-    icon: mdi:speaker-group
     entities:
       - media_player.kitchen_speakers
       - media_player.sunroom_speakers

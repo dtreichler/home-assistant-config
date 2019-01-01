@@ -9,17 +9,48 @@
       activity: '23544292'
     entity_id: remote.harmony_hub
     service: remote.turn_on
+
 - id: '000002'
-  alias: SMS when garage door is open
+  alias: SMS when garage door is open for 15 mins
   trigger:
   - entity_id: cover.garage_door_opener
     for: 0:15:00
     platform: state
     to: open
   action:
-  - data:
-      message: The garage door is open!
-      target:
-      - '+13015183303'
-      - '+12404468426'
-    service: notify.twilio
+    service: script.turn_on
+    entity_id: script.send_text_message
+    data:
+      variables:
+          message: 'The garage door has been open for 15 minutes'
+
+- id: '000003'
+  alias: SMS when garage door is open for an hour
+  trigger:
+  - entity_id: cover.garage_door_opener
+    for: 1:00:00
+    platform: state
+    to: open
+  action:
+    service: script.turn_on
+    entity_id: script.send_text_message
+    data:
+      variables:
+        message: 'The garage door has been open for an hour'
+
+- id: '000004'
+  alias: SMS when garage door is open at sunset
+  trigger:
+    platform: sun
+    event: sunset
+  condition:
+    condition: state
+    entity_id: cover.garage_door_opener
+    state: open
+    for: 0:15:00
+  action:
+    service: script.turn_on
+    entity_id: script.send_text_message
+    data:
+      variables:
+        message: 'The garage door is open!'
