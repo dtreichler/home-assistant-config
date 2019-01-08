@@ -16,6 +16,14 @@ homeassistant:
 # Enables the frontend
 frontend:
 
+http:
+  base_url: !secret duckdns_base_url
+  ssl_certificate: /ssl/fullchain.pem
+  ssl_key: /ssl/privkey.pem
+  trusted_networks:
+    - 127.0.0.1
+    - 192.168.0.0/24
+
 # Enables configuration UI
 config:
 
@@ -55,11 +63,17 @@ cloud:
         - media_player.office_speakers
         - media_player.kitchen_speakers
         - media_player.family_room_speakers
-        - script.all_speakers_volume
-        - script.all_speakers_source
+        - script.all_speakers_turn_on
+        - script.all_speakers_turn_off
       include_domains:
         - light
         - cover
+        - scene
+      exclude_entities:
+        - script.all_speakers_volume
+        - script.all_speakers_source
+        - script.set_speaker_source
+        - script.send_text_message
     entity_config:
       media_player.sunroom_speakers:
         name: Sunroom Speakers
@@ -138,3 +152,19 @@ input_select:
     options: ["Chromecast","TV","Office","Record Player"]
     initial: "Chromecast"
     icon: mdi:speaker-wireless
+
+sensor:
+  - platform: template
+    sensors:
+      outdoor_temperature:
+        friendly_name: "Outdoor Temperature"
+        unit_of_measurement: '°F'
+        value_template: "{{ state_attr('weather.main_floor', 'temperature') }}"
+
+ffmpeg:
+
+camera:
+  - platform: ffmpeg
+    name: backyard
+    input: -rtsp_transport tcp -i rtsp://192.168.1.7:7447/pH2PT1UZQyIYhtXz
+    extra_arguments: -pred 1 -q:v 2

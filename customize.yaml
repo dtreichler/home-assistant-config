@@ -2,6 +2,8 @@
     friendly_name: Kitchen Main Lights
   light.kitchen_island_pendants:
     friendly_name: Kitchen Island Pendants
+  light.kitchen_under_cabinet:
+    friendly_name: Kitchen Cabinet Lights
   light.family_room_main_lights:
     friendly_name: Family Room Main Lights
   light.sunroom_chandelier:
