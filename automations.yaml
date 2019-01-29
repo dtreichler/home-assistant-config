@@ -109,3 +109,24 @@
     data:
       variables:
         message: 'The sun has set and the garage door is open!'
+
+- id: 'office001'
+  alias: Turn on shelf lamps with desk lamp
+  trigger:
+  - entity_id: switch.office_desk_light
+    platform: state
+    to: "on"
+  action:
+    - service: switch.turn_on
+      entity_id: group.office_shelf_lamps
+
+- id: 'office002'
+  alias: Turn off shelf lamps with desk lamp
+  trigger:
+  - entity_id: switch.office_desk_light
+    platform: state
+    to: "off"
+  action:
+    - service: switch.turn_off
+      entity_id: group.office_shelf_lamps
+      

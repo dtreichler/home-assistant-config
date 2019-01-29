@@ -7,3 +7,8 @@
       - media_player.family_room_speakers
       - media_player.playroom_speakers
       - media_player.office_speakers
+  office_shelf_lamps:
+    name: Office Shelf Lamps
+    entities:
+      - switch.office_left_shelf_lamp
+      - switch.office_right_shelf_lamp

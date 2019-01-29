@@ -1,10 +1,34 @@
-  light.kitchen_main_lights:
-    friendly_name: Kitchen Main Lights
-  light.kitchen_island_pendants:
-    friendly_name: Kitchen Island Pendants
-  light.kitchen_under_cabinet:
-    friendly_name: Kitchen Cabinet Lights
-  light.family_room_main_lights:
-    friendly_name: Family Room Main Lights
-  light.sunroom_chandelier:
-    friendly_name: Sunroom Chandelier
+light.kitchen_main_lights:
+  friendly_name: Kitchen Main Lights
+light.kitchen_island_pendants:
+  friendly_name: Kitchen Island Pendants
+light.kitchen_under_cabinet:
+  friendly_name: Kitchen Cabinet Lights
+light.family_room_main_lights:
+  friendly_name: Family Room Main Lights
+light.sunroom_chandelier:
+  friendly_name: Sunroom Chandelier
+switch.steam_link:
+  friendly_name: Steam Link
+  icon: mdi:steam
+switch.music:
+  friendly_name: Chromecast
+  icon: mdi:music-circle
+switch.netflix:
+  friendly_name: Netflix
+  icon: mdi:netflix
+switch.tv:
+  friendly_name: TV
+  icon: mdi:television
+switch.whole_home_tv:
+  friendly_name: TV on the Whole House
+  icon: mdi:home-automation
+switch.office_desk_light:
+  friendly_name: Desk Lights
+  icon: mdi:desk-lamp
+switch.office_left_shelf_lamp:
+  friendly_name: Left Shelf Lamp
+  icon: mdi:lamp
+switch.office_right_shelf_lamp:
+  friendly_name: Right Shelf Lamp
+  icon: mdi:lamp
