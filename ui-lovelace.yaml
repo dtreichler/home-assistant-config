@@ -1,0 +1,202 @@
+title: Home Assistant
+resources:
+  - url: /local/mini-media-player-bundle.js?v=0.9.8
+    type: module
+views:
+  - badges:
+      - binary_sensor.islas_room_occupancy
+      - binary_sensor.family_room_occupancy
+      - binary_sensor.office_occupancy
+      - binary_sensor.bedroom_occupancy
+      - device_tracker.derricks_lg_g7
+      - device_tracker.whitneysiphone
+      - sensor.islas_room_temperature
+      - sensor.bedroom_temperature
+      - sensor.office_temperature
+      - sensor.main_floor_temperature
+      - sensor.family_room_temperature
+      - sensor.main_floor_humidity
+    cards:
+      - cards:
+          - entity: camera.front_door
+            show_state: false
+            type: picture-entity
+          - entity: camera.backyard
+            name: Backyard
+            show_state: false
+            type: picture-entity
+        type: vertical-stack
+      - entity: climate.main_floor
+        type: thermostat
+      - entities:
+          - entity: light.family_room_main_lights
+          - entity: light.kitchen_island_pendants
+          - entity: light.kitchen_main_lights
+          - entity: light.kitchen_under_cabinet
+          - entity: light.sunroom_chandelier
+          - entity: switch.office_desk_light
+          - entity: switch.office_left_shelf_lamp
+          - entity: switch.office_right_shelf_lamp
+        title: Lights
+        type: entities
+      - entity: weather.main_floor
+        type: weather-forecast
+      - entities:
+          - cover.garage_door_opener
+        show_header_toggle: false
+        title: ''
+        type: entities
+      - entity: media_player.whole_home_audio
+        type: media-control
+    path: default_view
+    title: Home
+  - badges: []
+    cards:
+      - entity: media_player.whole_home_audio
+        type: media-control
+      - entity: media_player.kitchen_speakers
+        type: media-control
+      - entity: media_player.sunroom_speakers
+        type: media-control
+      - entity: media_player.family_room_speakers
+        type: media-control
+      - entity: media_player.playroom_speakers
+        type: media-control
+      - entity: media_player.office_speakers
+        type: media-control
+      - entities:
+          - entity: input_number.speaker_volume
+          - entity: script.all_speakers_volume
+        show_header_toggle: false
+        title: Speaker Volume
+        type: entities
+      - entities:
+          - entity: input_select.speaker_source
+          - entity: script.all_speakers_source
+        show_header_toggle: false
+        title: Speaker Source
+        type: entities
+      - entities:
+          - entity: script.all_speakers_turn_on
+          - entity: script.all_speakers_turn_off
+        show_header_toggle: false
+        title: Speaker Power
+        type: entities
+      - entities:
+          - entity: automation.turn_on_receiver_with_family_room_speakers
+        type: entities
+      - entities:
+          - switch.steam_link
+          - switch.netflix
+          - switch.music
+          - switch.tv
+          - switch.whole_home_tv
+        entity: sensor.harmony_activity
+        state_image:
+          Listen to Music: /local/images/Music.jpg
+          Play TV on Whole House: /local/images/TV-broadcast.jpg
+          Play on Steam Link: /local/images/Steam.jpg
+          PowerOff: /local/images/PowerOff.jpg
+          Watch TV: /local/images/TV.jpg
+        title: Harmony
+        type: picture-glance
+    path: all_speakers
+    title: Speakers
+  - badges: []
+    cards:
+      - cards:
+          - cards:
+              - entity: light.kitchen_main_lights
+                type: light
+              - entity: light.kitchen_island_pendants
+                type: light
+            type: horizontal-stack
+          - cards:
+              - entity: light.kitchen_under_cabinet
+                type: light
+              - entity: light.sunroom_chandelier
+                type: light
+            type: horizontal-stack
+        name: Kitchen Lights
+        type: vertical-stack
+      - cards:
+          - entity: switch.office_desk_light
+            tap_action:
+              action: toggle
+            type: entity-button
+          - entity: switch.office_left_shelf_lamp
+            tap_action:
+              action: toggle
+            type: entity-button
+          - entity: switch.office_right_shelf_lamp
+            tap_action:
+              action: toggle
+            type: entity-button
+        type: horizontal-stack
+    path: first_floor
+    title: First Floor
+  - badges:
+    - sensor.office_temperature
+    - sensor.bedroom_temperature
+    - sensor.islas_room_temperature
+    - sensor.main_floor_temperature
+    - sensor.family_room_temperature
+    cards:
+      - entity: climate.main_floor
+        type: thermostat
+      - entities:
+          - sensor.hvac_operation
+          - sensor.hvac_fan
+        hours_to_show: 24
+        title: HVAC Activity
+        type: history-graph
+      - entities:
+          - sensor.office_temperature
+          - sensor.bedroom_temperature
+          - sensor.islas_room_temperature
+          - sensor.main_floor_temperature
+          - sensor.family_room_temperature
+        title: Room Sensors
+        type: history-graph
+      - entities:
+          - sensor.thermostat_temperature
+          - sensor.outdoor_temperature
+        hours_to_show: 72
+        title: Indoor/Outdoor Temperature
+        type: history-graph
+      - entity: weather.main_floor
+        type: weather-forecast
+    path: hvac
+    title: HVAC
+  - badges: []
+    cards:
+      - type: custom:mini-media-player
+        icon: mdi:speaker
+        entity: media_player.office_speakers
+        artwork_border: true
+        show_source: true
+        hide_controls: true
+        power_color: true
+        #volume_stateless: true
+      - type: custom:mini-media-player
+        entity: media_player.whole_home_audio
+        power_color: true
+        #hide_volume: true
+        show_progress: true
+        artwork: cover
+      - type: horizontal-stack
+        cards:
+          - entity: switch.office_desk_light
+            tap_action:
+              action: toggle
+            type: entity-button
+          - entity: switch.office_left_shelf_lamp
+            tap_action:
+              action: toggle
+            type: entity-button
+          - entity: switch.office_right_shelf_lamp
+            tap_action:
+              action: toggle
+            type: entity-button
+    title: Office
+    path: office

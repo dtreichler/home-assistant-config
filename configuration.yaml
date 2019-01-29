@@ -16,6 +16,9 @@ homeassistant:
 # Enables the frontend
 frontend:
 
+lovelace:
+  mode: yaml
+
 http:
   base_url: !secret duckdns_base_url
   ssl_certificate: /ssl/fullchain.pem
