@@ -1,0 +1,47 @@
+  path: default_view
+  title: Home
+  badges:
+    - binary_sensor.islas_room_occupancy
+    - binary_sensor.family_room_occupancy
+    - binary_sensor.office_occupancy
+    - binary_sensor.bedroom_occupancy
+    - device_tracker.derricks_lg_g7
+    - device_tracker.whitneysiphone
+    - sensor.islas_room_temperature
+    - sensor.bedroom_temperature
+    - sensor.office_temperature
+    - sensor.main_floor_temperature
+    - sensor.family_room_temperature
+    - sensor.main_floor_humidity
+  cards:
+    - cards:
+        - entity: camera.front_door
+          show_state: false
+          type: picture-entity
+        - entity: camera.backyard
+          name: Backyard
+          show_state: false
+          type: picture-entity
+      type: vertical-stack
+    - entity: climate.main_floor
+      type: thermostat
+    - entities:
+        - entity: light.family_room_main_lights
+        - entity: light.kitchen_island_pendants
+        - entity: light.kitchen_main_lights
+        - entity: light.kitchen_under_cabinet
+        - entity: light.sunroom_chandelier
+        - entity: switch.office_desk_light
+        - entity: switch.office_left_shelf_lamp
+        - entity: switch.office_right_shelf_lamp
+      title: Lights
+      type: entities
+    - entity: weather.main_floor
+      type: weather-forecast
+    - entities:
+        - cover.garage_door_opener
+      show_header_toggle: false
+      title: ''
+      type: entities
+    - entity: media_player.whole_home_audio
+      type: media-control

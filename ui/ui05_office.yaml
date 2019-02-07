@@ -1,0 +1,54 @@
+  title: Office
+  path: office
+  badges: []
+  cards:
+    - type: horizontal-stack
+      cards:
+        - entity: switch.office_chromecast
+          tap_action:
+            action: toggle
+          type: entity-button
+          name: ' '
+        - entity: switch.office_office
+          tap_action:
+            action: toggle
+          type: entity-button
+          name: ' '
+        - entity: switch.office_record_player
+          tap_action:
+            action: toggle
+          type: entity-button
+          name: ' '
+        - entity: switch.office_tv
+          tap_action:
+            action: toggle
+          type: entity-button
+          name: ' '
+    - type: custom:mini-media-player
+      icon: mdi:speaker
+      entity: media_player.office_speakers
+      artwork_border: true
+      show_source: true
+      hide_controls: true
+      power_color: true
+      #volume_stateless: true
+    - type: custom:mini-media-player
+      entity: media_player.whole_home_audio
+      power_color: true
+      #hide_volume: true
+      show_progress: true
+      artwork: cover
+    - type: horizontal-stack
+      cards:
+        - entity: switch.office_desk_light
+          tap_action:
+            action: toggle
+          type: entity-button
+        - entity: switch.office_left_shelf_lamp
+          tap_action:
+            action: toggle
+          type: entity-button
+        - entity: switch.office_right_shelf_lamp
+          tap_action:
+            action: toggle
+          type: entity-button

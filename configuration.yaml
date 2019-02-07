@@ -15,6 +15,7 @@ homeassistant:
 
 # Enables the frontend
 frontend:
+  themes: !include themes.yaml
 
 lovelace:
   mode: yaml
@@ -25,7 +26,7 @@ http:
   ssl_key: /ssl/privkey.pem
   trusted_networks:
     - 127.0.0.1
-    - 192.168.0.0/24
+    - 192.168.1.0/24
 
 # Enables configuration UI
 config:
@@ -179,6 +180,13 @@ sensor:
           {% else %}
             PowerOff
           {% endif %}
+      office_source:
+        value_template: >
+          {% if is_state("media_player.office_speakers", 'on') %}
+            {{ states.media_player.office_speakers.attributes.source }}
+          {% else %}
+            PowerOff
+          {% endif %}
       thermostat_temperature:
         friendly_name: "Indoor Temperature"
         unit_of_measurement: '°F'
@@ -192,70 +200,4 @@ camera:
     input: !secret unifi_camera_rstp
     extra_arguments: -pred 1 -q:v 2
 
-switch:
-    - platform: template
-      switches:
-        steam_link:
-          value_template: "{{ is_state_attr('remote.harmony_hub', 'current_activity', 'Play on Steam Link') }}"
-          turn_on:
-            service: remote.turn_on
-            data:
-              entity_id: remote.harmony_hub
-              activity: 'Play on Steam Link'
-          turn_off:
-            service: remote.turn_on
-            data:
-              entity_id: remote.harmony_hub
-              activity: 'PowerOff'
-        music:
-          value_template: "{{ is_state_attr('remote.harmony_hub', 'current_activity', 'Listen to Music') }}"
-          turn_on:
-            service: remote.turn_on
-            data:
-              entity_id: remote.harmony_hub
-              activity: 'Listen to Music'
-          turn_off:
-            service: remote.turn_on
-            data:
-              entity_id: remote.harmony_hub
-              activity: 'PowerOff'
-        netflix:
-          value_template: "{{ is_state_attr('remote.harmony_hub', 'current_activity', 'Watch Netflix') }}"
-          turn_on:
-            service: remote.turn_on
-            data:
-              entity_id: remote.harmony_hub
-              activity: 'Watch Netflix'
-          turn_off:
-            service: remote.turn_on
-            data:
-              entity_id: remote.harmony_hub
-              activity: 'PowerOff'
-        tv:
-          value_template: "{{ is_state_attr('remote.harmony_hub', 'current_activity', 'Watch TV') }}"
-          turn_on:
-            service: remote.turn_on
-            data:
-              entity_id: remote.harmony_hub
-              activity: 'Watch TV'
-          turn_off:
-            service: remote.turn_on
-            data:
-              entity_id: remote.harmony_hub
-              activity: 'PowerOff'
-        whole_home_tv:
-          value_template: "{{ is_state_attr('remote.harmony_hub', 'current_activity', 'Play TV on Whole House') }}"
-          turn_on:
-            service: remote.turn_on
-            data:
-              entity_id: remote.harmony_hub
-              activity: 'Play TV on Whole House'
-          turn_off:
-            service: remote.turn_on
-            data:
-              entity_id: remote.harmony_hub
-              activity: 'PowerOff'
-    - platform: tplink
-      host: !secret tplink_ip_office_lamp1
-    - platform: tplink
-      host: !secret tplink_ip_office_lamp2
+switch: !include switch.yaml

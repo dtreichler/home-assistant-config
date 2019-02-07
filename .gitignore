@@ -6,6 +6,8 @@
 !*.yaml
 !.gitignore
 
+!ui
+
 ._*
 
 # Keep our secrets

@@ -1,0 +1,33 @@
+  path: first_floor
+  title: First Floor
+  badges: []
+  cards:
+    - cards:
+        - cards:
+            - entity: light.kitchen_main_lights
+              type: light
+            - entity: light.kitchen_island_pendants
+              type: light
+          type: horizontal-stack
+        - cards:
+            - entity: light.kitchen_under_cabinet
+              type: light
+            - entity: light.sunroom_chandelier
+              type: light
+          type: horizontal-stack
+      name: Kitchen Lights
+      type: vertical-stack
+    - cards:
+        - entity: switch.office_desk_light
+          tap_action:
+            action: toggle
+          type: entity-button
+        - entity: switch.office_left_shelf_lamp
+          tap_action:
+            action: toggle
+          type: entity-button
+        - entity: switch.office_right_shelf_lamp
+          tap_action:
+            action: toggle
+          type: entity-button
+      type: horizontal-stack

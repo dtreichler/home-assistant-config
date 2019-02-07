@@ -32,3 +32,15 @@ switch.office_left_shelf_lamp:
 switch.office_right_shelf_lamp:
   friendly_name: Right Shelf Lamp
   icon: mdi:lamp
+switch.office_chromecast:
+  friendly_name: Chromecast
+  icon: mdi:google-chrome
+switch.office_office:
+  friendly_name: PC
+  icon: mdi:laptop
+switch.office_record_player:
+  friendly_name: Turntable
+  icon: mdi:record-player
+switch.office_tv:
+  friendly_name: TV
+  icon: mdi:television

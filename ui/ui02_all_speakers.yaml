@@ -1,0 +1,52 @@
+  path: all_speakers
+  title: Speakers
+  badges: []
+  cards:
+    - entity: media_player.whole_home_audio
+      type: media-control
+    - entity: media_player.kitchen_speakers
+      type: media-control
+    - entity: media_player.sunroom_speakers
+      type: media-control
+    - entity: media_player.family_room_speakers
+      type: media-control
+    - entity: media_player.playroom_speakers
+      type: media-control
+    - entity: media_player.office_speakers
+      type: media-control
+    - entities:
+        - entity: input_number.speaker_volume
+        - entity: script.all_speakers_volume
+      show_header_toggle: false
+      title: Speaker Volume
+      type: entities
+    - entities:
+        - entity: input_select.speaker_source
+        - entity: script.all_speakers_source
+      show_header_toggle: false
+      title: Speaker Source
+      type: entities
+    - entities:
+        - entity: script.all_speakers_turn_on
+        - entity: script.all_speakers_turn_off
+      show_header_toggle: false
+      title: Speaker Power
+      type: entities
+    - entities:
+        - entity: automation.turn_on_receiver_with_family_room_speakers
+      type: entities
+    - entities:
+        - switch.steam_link
+        - switch.netflix
+        - switch.music
+        - switch.tv
+        - switch.whole_home_tv
+      entity: sensor.harmony_activity
+      state_image:
+        Listen to Music: /local/images/Music.jpg
+        Play TV on Whole House: /local/images/TV-broadcast.jpg
+        Play on Steam Link: /local/images/Steam.jpg
+        PowerOff: /local/images/PowerOff.jpg
+        Watch TV: /local/images/TV.jpg
+      title: Harmony
+      type: picture-glance

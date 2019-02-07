@@ -1,0 +1,33 @@
+  path: hvac
+  title: HVAC
+  badges:
+  - sensor.office_temperature
+  - sensor.bedroom_temperature
+  - sensor.islas_room_temperature
+  - sensor.main_floor_temperature
+  - sensor.family_room_temperature
+  cards:
+    - entity: climate.main_floor
+      type: thermostat
+    - entities:
+        - sensor.hvac_operation
+        - sensor.hvac_fan
+      hours_to_show: 24
+      title: HVAC Activity
+      type: history-graph
+    - entities:
+        - sensor.office_temperature
+        - sensor.bedroom_temperature
+        - sensor.islas_room_temperature
+        - sensor.main_floor_temperature
+        - sensor.family_room_temperature
+      title: Room Sensors
+      type: history-graph
+    - entities:
+        - sensor.thermostat_temperature
+        - sensor.outdoor_temperature
+      hours_to_show: 168
+      title: Indoor/Outdoor Temperature
+      type: history-graph
+    - entity: weather.main_floor
+      type: weather-forecast

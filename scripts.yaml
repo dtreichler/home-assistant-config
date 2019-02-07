@@ -91,6 +91,16 @@ set_speaker_source:
         entity_id: '{{ speaker_zone }}'
         source: '{{ source }}'
 
+turn_speakers_on_set_source:
+  sequence:
+    - service: media_player.turn_on
+      data_template:
+        entity_id: '{{ speaker_zone }}'
+    - service: media_player.select_source
+      data_template:
+        entity_id: '{{ speaker_zone }}'
+        source: '{{ source }}'
+
 send_text_message:
   alias: "Send a text message"
   sequence:
