@@ -1,5 +1,5 @@
 title: Home Assistant
 resources:
-  - url: /local/mini-media-player-bundle.js?v=0.9.8
+  - url: /local/mini-media-player-bundle.js?v=1.0.0
     type: module
 views: !include_dir_list ui/

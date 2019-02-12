@@ -27,17 +27,22 @@
     - type: custom:mini-media-player
       icon: mdi:speaker
       entity: media_player.office_speakers
-      artwork_border: true
-      show_source: true
-      hide_controls: true
-      power_color: true
+      hide:
+        source: true
+        controls: true
+        power_state: false
       #volume_stateless: true
-    - type: custom:mini-media-player
-      entity: media_player.whole_home_audio
-      power_color: true
-      #hide_volume: true
-      show_progress: true
-      artwork: cover
+      source: icon
+    - type: conditional
+      conditions:
+        - entity: sensor.office_source
+          state: "Chromecast"
+      card:
+        type: custom:mini-media-player
+        entity: media_player.whole_home_audio
+        hide:
+          power_state: false
+        artwork: cover
     - type: horizontal-stack
       cards:
         - entity: switch.office_desk_light
